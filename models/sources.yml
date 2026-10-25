@@ -1,0 +1,9 @@
+
+version: 2
+
+sources:
+  - name: employee_source
+    database: DEPI_EmployeeDB
+    schema: dbo
+    tables:
+      - name: datadbt1

@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: DIMEmployee
+    description: "DWH copy of the employee dimension, referenced from staging."
+  - name: DIMCountry
+    description: "DWH copy of the country dimension, referenced from staging."
+  - name: DIMDepartment
+    description: "DWH copy of the department dimension, referenced from staging."
+  - name: DIMGender
+    description: "DWH copy of the gender dimension, referenced from staging."
+  - name: FactEmployee
+    description: "Employee fact table following the schema provided in class."

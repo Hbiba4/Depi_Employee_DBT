@@ -1,15 +1,42 @@
 version: 2
 
 models:
-  - name: stg_employees
-    description: "Staging view of the source employee table."
   - name: stg_DIMEmployee
-    description: "Staging employee dimension following the schema provided in class."
+    description: "Staging employee dimension built directly from the source employee table."
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
   - name: stg_DIMCountry
-    description: "Staging country dimension following the schema provided in class."
+    description: "Staging country dimension built from the source employee table."
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+      - name: unique_country
+        tests:
+          - not_null
   - name: stg_DIMDepartment
-    description: "Staging department dimension following the schema provided in class."
+    description: "Staging department dimension built from the source employee table."
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+      - name: unique_department
+        tests:
+          - not_null
   - name: stg_DIMGender
-    description: "Staging gender dimension following the schema provided in class."
+    description: "Staging gender dimension built from the source employee table."
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+      - name: unique_gender
+        tests:
+          - not_null
   - name: OBT
     description: "One Big Table built in the staging layer from employee data and staging dimensions."

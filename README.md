@@ -16,7 +16,6 @@ The required model contains four dimensions — `DIMEmployee`, `DIMCountry`, `DI
 depi_employee_dbt/
 ├── models/
 │   ├── staging/
-│   │   ├── stg_employees.sql
 │   │   ├── stg_DIMEmployee.sql
 │   │   ├── stg_DIMCountry.sql
 │   │   ├── stg_DIMDepartment.sql
@@ -45,9 +44,9 @@ depi_employee_dbt/
 
 ## Architecture
 
-- **Staging:** contains the staging employee view, staging versions of the dimensions, and the One Big Table (`OBT`).
+- **Staging:** contains staging versions of the dimensions and the One Big Table (`OBT`). These models read directly from the configured source table; there is no separate `stg_employees` model.
 - **DWH:** contains copies of the dimensions built with dbt `ref()` and the `FactEmployee` table.
-- **Tests:** contains singular SQL tests. A test passes when its query returns no rows.
+- **Tests:** generic tests (`unique`, `not_null`) are declared in each model's `schema.yml`. Singular SQL tests are reserved for custom business rules, such as checking that salary is not negative. A singular test passes when its query returns no rows.
 
 ## Requirements
 
@@ -78,7 +77,7 @@ The `employee_source` source in `models/sources.yml` currently points to databas
 
 ## Tests
 
-The singular tests are SQL files under `tests/staging/` and `tests/dwh/`. They check dimension ID uniqueness and that fact-table keys resolve to the corresponding dimensions.
+Generic tests declared in `schema.yml` check ID uniqueness and required values. Singular SQL tests under `tests/dwh/` check custom rules (currently, that salary is not negative) and that fact-table keys resolve to the corresponding dimensions.
 
 ## Documentation
 

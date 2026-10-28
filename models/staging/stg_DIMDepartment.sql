@@ -3,7 +3,7 @@
 WITH distinct_departments AS (
     SELECT DISTINCT
         {{ clean_string('department') }} AS unique_department
-    FROM {{ ref('stg_employees') }}
+    FROM {{ source('employee_source', 'datadbt1') }}
 )
 SELECT
     ROW_NUMBER() OVER (ORDER BY unique_department) AS id,

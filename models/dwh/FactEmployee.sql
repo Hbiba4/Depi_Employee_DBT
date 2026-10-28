@@ -7,7 +7,7 @@ SELECT
     g.id AS id_dimgender,
     d.id AS id_dimdepartment,
     e.salary
-FROM {{ ref('stg_employees') }} AS e
+FROM {{ source('employee_source', 'datadbt1') }} AS e
 LEFT JOIN {{ ref('DIMEmployee') }} AS emp
     ON e.ID = emp.id
 LEFT JOIN {{ ref('DIMCountry') }} AS c

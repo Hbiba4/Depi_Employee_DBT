@@ -3,7 +3,7 @@
 WITH distinct_countries AS (
     SELECT DISTINCT
         {{ clean_string('country') }} AS unique_country
-    FROM {{ ref('stg_employees') }}
+    FROM {{ source('employee_source', 'datadbt1') }}
 )
 SELECT
     ROW_NUMBER() OVER (ORDER BY unique_country) AS id,

@@ -13,7 +13,7 @@ SELECT
     g.id AS id_dimgender,
     d.id AS id_dimdepartment,
     c.id AS id_dimcountry
-FROM {{ ref('stg_employees') }} AS e
+FROM {{ source('employee_source', 'datadbt1') }} AS e
 LEFT JOIN {{ ref('stg_DIMGender') }} AS g
     ON {{ clean_string('e.gender') }} = g.unique_gender
 LEFT JOIN {{ ref('stg_DIMDepartment') }} AS d

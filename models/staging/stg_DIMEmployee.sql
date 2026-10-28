@@ -5,4 +5,4 @@ SELECT DISTINCT
     {{ clean_string('first_name') }} AS first_name,
     {{ clean_string('last_name') }} AS last_name,
     {{ clean_string('email') }} AS email
-FROM {{ ref('stg_employees') }}
+FROM {{ source('employee_source', 'datadbt1') }}

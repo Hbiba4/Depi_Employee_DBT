@@ -3,11 +3,39 @@ version: 2
 models:
   - name: DIMEmployee
     description: "DWH copy of the employee dimension, referenced from staging."
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
   - name: DIMCountry
     description: "DWH copy of the country dimension, referenced from staging."
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
   - name: DIMDepartment
     description: "DWH copy of the department dimension, referenced from staging."
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
   - name: DIMGender
     description: "DWH copy of the gender dimension, referenced from staging."
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
   - name: FactEmployee
     description: "Employee fact table following the schema provided in class."
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+      - name: salary
+        tests:
+          - not_null

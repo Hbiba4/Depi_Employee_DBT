@@ -3,7 +3,7 @@
 WITH distinct_genders AS (
     SELECT DISTINCT
         {{ clean_string('gender') }} AS unique_gender
-    FROM {{ ref('stg_employees') }}
+    FROM {{ source('employee_source', 'datadbt1') }}
 )
 SELECT
     ROW_NUMBER() OVER (ORDER BY unique_gender) AS id,
